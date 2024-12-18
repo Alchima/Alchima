@@ -1,0 +1,61 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Task42 {
+    public static void main(String[] args) {
+        // Create a File object for the input file
+        File inputFile = new File("input.txt");
+
+        try {
+            // Create a Scanner object to read the file
+            Scanner fileScanner = new Scanner(inputFile);
+
+            // Initialize variables to track total price, total quantity, and number of products
+            double totalPrice = 0;  // Sum of price * quantity for all products
+            int totalQuantity = 0; // Total quantity of all products
+            int numProducts = 0;   // Number of products in the file
+
+            // Read each line of the file until there are no more lines
+            while (fileScanner.hasNextLine()) {
+                // Read the current line from the file
+                String line = fileScanner.nextLine();
+
+                // Split the line into tokens (price and quantity) based on spaces
+                String[] tokens = line.split(" ");
+
+                // Parse the price and quantity from the tokens
+                double price = Double.parseDouble(tokens[0]);
+                int quantity = Integer.parseInt(tokens[1]);
+
+                // Update the total price and total quantity
+                totalPrice += price * quantity; // Add price * quantity for this product
+                totalQuantity += quantity;     // Add the quantity for this product
+
+                // Increment the count of products
+                numProducts++;
+            }
+
+            // Close the file scanner
+            fileScanner.close();
+
+            // Initialize discount to 0
+            double discount = 0;
+
+            // Apply discount if there are more than 5 products and total price > 500
+            if (numProducts > 5 && totalPrice > 500) {
+                discount = totalPrice * 0.1; // Calculate 10% discount
+                totalPrice -= discount;     // Subtract the discount from total price
+            }
+
+            // Print the total price before the discount, discount amount, and final total price
+            System.out.println("Total price before discount: $" + (totalPrice + discount));
+            System.out.println("Discount applied: $" + discount);
+            System.out.println("Total price after discount: $" + totalPrice);
+
+        } catch (FileNotFoundException e) {
+            // Handle the case where the file is not found
+            System.out.println("File not found: " + e.getMessage());
+        }
+    }
+}
