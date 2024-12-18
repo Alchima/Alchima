@@ -1,0 +1,20 @@
+# Initialize variable for sum as well as the inp for count of numbers
+sum = 0
+print("Enter the count of numbers: ")
+inp = float(input())  # Prompt the user for the number of inputs
+
+# Store the original count of numbers to calculate the average later
+count = inp  # Store the original input count for division later
+
+# Loop for adding each number input by the user
+while inp > 0:
+    print("Enter an integer: ")
+    i = float(input())  # Get the current number
+    sum = sum + i  # Add the current number to the sum
+    inp = inp - 1  # Decrease the remaining count
+
+# Final print to get the sum and divide it by the count (original count stored in 'count')
+if count > 0:  # Ensure there's at least one number to avoid division by zero
+    print("The average is: ", sum / count)  # Calculate and print the average
+else:
+    print("No numbers were entered.")  # Handle the case where no valid input was provided
