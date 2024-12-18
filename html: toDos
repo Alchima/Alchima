@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+</head>
+<body>
+    <h1>To-Do List</h1>
+    <!-- Input field for adding new tasks -->
+    <input type="text" id="todo-input" placeholder="Add a new task">
+    
+    <!-- Button to trigger adding a new task -->
+    <button onclick="addTodo()">Add</button>
+
+    <!-- Unordered list to display the tasks -->
+    <ul id="todo-list"></ul>
+
+    <script>
+        // Function to load saved tasks from localStorage
+        function loadTodos() {
+            // Get tasks from localStorage (if any), or default to an empty array
+            const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+
+            // Get the list element to append tasks to
+            const list = document.getElementById('todo-list');
+
+            // Loop through each saved task and add it to the list
+            savedTodos.forEach(taskText => {
+                const listItem = document.createElement('li');  // Create a new list item
+                listItem.textContent = taskText;  // Set the task text
+                listItem.onclick = () => { // Add event to remove the task when clicked
+                    listItem.remove();
+                    saveTodos(); // Update the saved tasks
+                };
+                list.appendChild(listItem);  // Append the list item to the list
+            });
+        }
+
+        // Function to save tasks to localStorage
+        function saveTodos() {
+            // Get all tasks from the list
+            const tasks = Array.from(document.getElementsByTagName('li'))
+                .map(item => item.textContent);  // Extract the text from each task
+            localStorage.setItem('todos', JSON.stringify(tasks));  // Save the tasks to localStorage
+        }
+
+        // Function to add a new task to the list
+        function addTodo() {
+            const input = document.getElementById('todo-input'); // Get the input element
+            const taskText = input.value.trim(); // Get the value of the input and remove extra spaces
+
+            if (taskText) { // If the input is not empty
+                const list = document.getElementById('todo-list'); // Get the list element
+
+                // Create a new list item for the task
+                const listItem = document.createElement('li');
+                listItem.textContent = taskText; // Set the task text
+
+                // Add an event to remove the task when clicked
+                listItem.onclick = () => {
+                    listItem.remove(); // Remove the task from the list
+                    saveTodos(); // Update saved tasks in localStorage
+                };
+
+                list.appendChild(listItem); // Append the new task to the list
+                input.value = ''; // Clear the input field
+                saveTodos(); // Save the updated list to localStorage
+            }
+        }
+
+        // Load tasks when the page is loaded
+        window.onload = loadTodos;
+    </script>
+</body>
+</html>
