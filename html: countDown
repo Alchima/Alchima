@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <h1>Countdown Timer</h1>
+
+    <!-- Paragraph to display the countdown timer -->
+    <p id="timer">10</p>
+
+    <!-- Button to start the countdown -->
+    <button onclick="startCountdown()">Start</button>
+
+    <script>
+        // Variable to store the countdown interval ID
+        let countdown;
+
+        // Function to start the countdown when the button is clicked
+        function startCountdown() {
+            // Get the paragraph element where the timer is displayed
+            const timerElement = document.getElementById('timer');
+            
+            // Parse the current countdown time from the text content of the timer
+            let timeRemaining = parseInt(timerElement.textContent);
+
+            // Start an interval to decrease the time every 1 second (1000 milliseconds)
+            countdown = setInterval(() => {
+                // Decrease the remaining time by 1 second
+                timeRemaining--;
+
+                // Update the timer display with the new time
+                timerElement.textContent = timeRemaining;
+
+                // If the countdown reaches 0 or below, stop the interval (clear the countdown)
+                if (timeRemaining <= 0) clearInterval(countdown);
+            }, 1000);  // 1000 milliseconds = 1 second
+        }
+    </script>
+</body>
+</html>
