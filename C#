@@ -1,0 +1,192 @@
+using System; // Importing the System namespace to use common functionality like Console.
+
+namespace Chapter05 // Namespace to organize the classes and code.
+{
+    class Program // Main class containing the program's entry point.
+    {
+        // Class to define style pricing
+        class SPrice
+        {
+            // Prices for different styles of vans
+            int StyleBprice = 35279;
+            int StyleCprice = 37635;
+            int StylePprice = 41090;
+        }
+
+        // Class to define height pricing
+        class HPrice
+        {
+            int HeightLprice = 0; // No extra cost for low roof
+            int HeightMprice = 750; // Medium roof price
+            int HeightHprice = 1500; // High roof price
+        }
+
+        // Class to define length pricing
+        class LPrice
+        {
+            int LengthRprice = 0; // No extra cost for regular length
+            int LengthEprice = 1000; // Extended length price
+            int LengthXprice = 2000; // Extra long length price
+        }
+
+        static void Main(string[] args) // Program entry point
+        {
+            // Creating instances of pricing classes
+            SPrice mysObj1 = new SPrice();
+            SPrice mysObj2 = new SPrice();
+            SPrice mysObj3 = new SPrice();
+
+            HPrice myhObj1 = new HPrice();
+            HPrice myhObj2 = new HPrice();
+            HPrice myhObj3 = new HPrice();
+
+            LPrice mylObj1 = new LPrice();
+            LPrice mylObj2 = new LPrice();
+            LPrice mylObj3 = new LPrice();
+
+            // Variables for user input and processing
+            const int max = 10; // Maximum limit for arrays
+            string Name; // Customer's name
+            int quantities2; // Number of vans in each line
+            string styles1; // Style selected
+            string lengths1; // Length selected
+            string heights1; // Height selected
+            int lines0; // Number of lines
+
+            // Arrays to store input details
+            char[] styles = new char[max];
+            char[] lengths = new char[max];
+            char[] heights = new char[max];
+            int[] quantities = new int[max];
+            int[] unitprices = new int[max];
+
+            // Prompting for the customer's name
+            Console.WriteLine("Enter Name: ");
+            Name = Console.ReadLine(); // Read input from the user
+            Console.WriteLine("Customer's Name: " + Name); // Output name
+
+            // Function to get the number of lines
+            static char Lines()
+            {
+                Console.WriteLine("How many lines do you want? (Max of 3)");
+                return ' ';
+            }
+
+            // Function to get van style
+            static char GetStyle()
+            {
+                Console.WriteLine("What Van Style Would you like to Choose? B - Base, C- Crew, P- Passenger (Only type the letter)");
+                return ' ';
+            }
+
+            // Function to get van length
+            static char GetLength()
+            {
+                Console.WriteLine("What Van Length would you like? R- Regular, E- Extended, X - Xtra Long (Only type the letter)");
+                return ' ';
+            }
+
+            // Function to get van height
+            static char GetHeight()
+            {
+                Console.WriteLine("What Van Height would you like? L- Low Roof, M- Middle Roof, H- High Roof (Only type the letter)");
+                return ' ';
+            }
+
+            // Order labels for multiple lines
+            string[] order = { " ", "1", "2", "3" };
+
+            // Getting the number of lines
+            Console.WriteLine(Lines());
+            lines0 = Convert.ToInt32(Console.ReadLine()); // Convert input to an integer
+            Console.WriteLine($"You have chosen to order {lines0} van line(s).");
+
+            // Loop to handle each line
+            for (int i = 0; i < lines0; i++)
+            {
+                int totalPrice; // Variable to hold the total price of the configuration
+                int Sp = mysObj3.StylePprice; // Default style price
+                int Hp = myhObj3.HeightHprice; // Default height price
+                int Lp = mylObj3.LengthXprice; // Default length price
+
+                Console.WriteLine($"What would you like for van line {order[i + 1]}?");
+                Console.WriteLine(GetStyle()); // Prompt for style selection
+
+                styles1 = Console.ReadLine(); // Read style input
+                Console.WriteLine($"You have chosen the {styles1} style van!");
+
+                // Determine the style price based on user input
+                if (styles1 == "B")
+                {
+                    Console.WriteLine($"Base style will cost ${mysObj1.StyleBprice}");
+                    Sp = Convert.ToInt32(mysObj1.StyleBprice);
+                }
+                else if (styles1 == "C")
+                {
+                    Console.WriteLine($"Crew style will cost ${mysObj2.StyleCprice}");
+                    Sp = Convert.ToInt32(mysObj2.StyleCprice);
+                }
+                else if (styles1 == "P")
+                {
+                    Console.WriteLine($"Passenger style will cost ${mysObj3.StylePprice}");
+                    Sp = Convert.ToInt32(mysObj3.StylePprice);
+                }
+
+                // Determine the height price based on user input
+                Console.WriteLine(GetHeight()); // Prompt for height selection
+                heights1 = Console.ReadLine(); // Read height input
+                Console.WriteLine($"You have chosen the {heights1} height for the van!");
+
+                if (heights1 == "L")
+                {
+                    Console.WriteLine($"Low roof will add ${myhObj1.HeightLprice}");
+                    Hp = Convert.ToInt32(myhObj1.HeightLprice);
+                }
+                else if (heights1 == "M")
+                {
+                    Console.WriteLine($"Medium roof will add ${myhObj2.HeightMprice}");
+                    Hp = Convert.ToInt32(myhObj2.HeightMprice);
+                }
+                else if (heights1 == "H")
+                {
+                    Console.WriteLine($"High roof will add ${myhObj3.HeightHprice}");
+                    Hp = Convert.ToInt32(myhObj3.HeightHprice);
+                }
+
+                // Determine the length price based on user input
+                Console.WriteLine(GetLength()); // Prompt for length selection
+                lengths1 = Console.ReadLine(); // Read length input
+                Console.WriteLine($"You have chosen the {lengths1} length for the van!");
+
+                if (lengths1 == "R")
+                {
+                    Console.WriteLine($"Regular Length will add ${mylObj1.LengthRprice}");
+                    Lp = Convert.ToInt32(mylObj1.LengthRprice);
+                }
+                else if (lengths1 == "E")
+                {
+                    Console.WriteLine($"Extended Length will add ${mylObj2.LengthEprice}");
+                    Lp = Convert.ToInt32(mylObj2.LengthEprice);
+                }
+                else if (lengths1 == "X")
+                {
+                    Console.WriteLine($"Xtra Long Length will add ${mylObj3.LengthXprice}");
+                    Lp = Convert.ToInt32(mylObj3.LengthXprice);
+                }
+
+                // Calculate the total price for the configuration
+                totalPrice = Sp + Hp + Lp;
+
+                // Ask the user how many vans of this configuration they want
+                Console.WriteLine("How many of these vans would you Like?");
+                quantities2 = Convert.ToInt32(Console.ReadLine());
+
+                // Final output for the line
+                Console.WriteLine($"{Name}'s Van Build Line");
+                Console.WriteLine($"Line {order[i + 1]}: {styles1}, {heights1}, {lengths1}, {quantities2}");
+                Console.WriteLine($"Total Cost Per Van: ${totalPrice}");
+                Console.WriteLine($"Total Line Cost: ${totalPrice * quantities2}");
+            }
+        }
+    }
+}
