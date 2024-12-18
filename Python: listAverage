@@ -1,0 +1,19 @@
+# First, I initialize my set values that will help with the while loop
+total = 0  # To store the sum of the numbers
+z = 0  # Counter variable, not used in this version, can be removed
+x = 0  # Index for the list
+
+# Initialize the list to store the numbers
+arrlist = [0, 0, 0, 0, 0]  # List to store 5 numbers
+
+# Nest my while loop that will take inputs and add them to the list and add them to the total sum
+while x < 5:
+    print("Enter a number:")
+    arrlist[x] = int(input())  # Take input and store it in the list at index x
+    total += arrlist[x]  # Add the entered number to the total sum
+    x += 1  # Move to the next index
+    z += 1  # Increment z, though it's not being used for anything
+
+# After the loop, take the total and divide it by 5 to get the average
+average = total / 5  # Calculate the average
+print(f"{average} is the average of the given numbers")  # Print the average
