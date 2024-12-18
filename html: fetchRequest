@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Random Dog Image</title>
+</head>
+<body>
+    <h1>Random Dog Image</h1>
+    
+    <!-- Button to trigger fetching a random dog image -->
+    <button onclick="fetchDogImage()">Get Random Dog Image</button>
+
+    <!-- Image element to display the random dog image -->
+    <img id="dog-image" src="" alt="Random Dog" style="width:300px; height:auto; display:none;">
+
+    <script>
+        // Asynchronous function to fetch and display a random dog image
+        async function fetchDogImage() {
+            try {
+                // Fetch data from the Dog CEO API to get a random dog image
+                const response = await fetch('https://dog.ceo/api/breeds/image/random');
+                
+                // Check if the fetch was successful (status code 200)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // Parse the JSON data from the response
+                const data = await response.json();
+
+                // Get the image URL from the JSON response
+                const dogImageUrl = data.message;
+
+                // Find the image element in the HTML by its ID
+                const img = document.getElementById('dog-image');
+
+                // Set the source of the image to the random dog image URL
+                img.src = dogImageUrl;
+
+                // Make the image visible by changing its display style
+                img.style.display = 'block';
+            } catch (error) {
+                // If there's an error, log it to the console
+                console.error('Error fetching dog image:', error);
+            }
+        }
+    </script>
+</body>
+</html>
+    </script>
+</body>
+</html>
