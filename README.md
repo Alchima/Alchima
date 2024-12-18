@@ -1,5 +1,5 @@
 ## Hi there 👋
-
+Aspiring software engineer with experience in C#, JavaScript, and Java. Passionate about sustainable tech and clean energy
 <!--
 **Alchima/Alchima** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
