@@ -1,0 +1,28 @@
+# Prompt the user to select an arithmetic operation
+print("Please enter your choice (1/2/3/4):")
+cho = float(input())  # User input to choose the operation (not used in this snippet)
+
+# Prompt the user to enter how many numbers they want to input
+print("How many numbers you will input? ")
+inp = float(input())  # Number of inputs to subtract
+
+# Initialize the sum variable to 0
+sum = 0
+
+# Define the calculation function
+def calc(inp, cho, sum):
+    if cho == 2:  # If the user selected subtraction (cho == 2)
+        print("Enter a number: ")
+        i = float(input())  # Get the first number
+        sum = i  # Initialize sum with the first number
+        inp -= 1  # Decrease the number of remaining inputs
+        while inp > 0:  # Continue the loop until all inputs are processed
+            print("Enter a number: ")
+            i = float(input())  # Get the next number
+            sum -= i  # Subtract the entered number from the sum
+            inp -= 1  # Decrease the remaining input count
+
+        print(sum)  # Display the final result after subtraction
+
+# Call the calc function to perform the subtraction and print the result
+print(calc(inp, cho, sum))
