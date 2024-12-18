@@ -1,0 +1,92 @@
+// Function to load saved tasks from localStorage
+function loadTodos() {
+    // Get tasks from localStorage (if any), or default to an empty array
+    const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+
+    console.log("Current To-Do List:");
+    // Loop through each saved task and display it in the console
+    savedTodos.forEach((taskText, index) => {
+        console.log(`${index + 1}. ${taskText}`);  // Display task with index number
+    });
+}
+
+// Function to save tasks to localStorage
+function saveTodos(tasks) {
+    // Save the array of tasks to localStorage
+    localStorage.setItem('todos', JSON.stringify(tasks));
+}
+
+// Function to add a new task to the list
+function addTodo() {
+    let tasks = JSON.parse(localStorage.getItem('todos')) || []; // Retrieve existing tasks or start new list
+
+    const taskText = prompt("Enter a new task (or press cancel to stop):");
+
+    if (taskText) {
+        // Add the new task to the array
+        tasks.push(taskText);
+        saveTodos(tasks);  // Save the updated task list to localStorage
+        console.log(`Task added: ${taskText}`);
+    } else {
+        console.log("No task entered.");
+    }
+}
+
+// Function to remove a task by index
+function removeTodo() {
+    let tasks = JSON.parse(localStorage.getItem('todos')) || []; // Retrieve existing tasks or start new list
+
+    if (tasks.length === 0) {
+        console.log("No tasks to remove.");
+        return;
+    }
+
+    let taskIndex = prompt("Enter the task number to remove (or press cancel to stop):");
+
+    // Convert to an integer and check if valid
+    taskIndex = parseInt(taskIndex, 10);
+    if (taskIndex > 0 && taskIndex <= tasks.length) {
+        const removedTask = tasks.splice(taskIndex - 1, 1);  // Remove task at the specified index
+        saveTodos(tasks);  // Save the updated list
+        console.log(`Task removed: ${removedTask}`);
+    } else {
+        console.log("Invalid task number.");
+    }
+}
+
+// Main function to interact with the user
+function manageTodos() {
+    let exit = false;
+
+    while (!exit) {
+        console.log("\n--- To-Do List Menu ---");
+        console.log("1. View To-Do List");
+        console.log("2. Add Task");
+        console.log("3. Remove Task");
+        console.log("4. Exit");
+
+        const choice = prompt("Choose an option (1-4):");
+
+        switch (choice) {
+            case "1":
+                loadTodos();  // Display the current to-do list
+                break;
+            case "2":
+                addTodo();  // Add a new task
+                break;
+            case "3":
+                removeTodo();  // Remove an existing task
+                break;
+            case "4":
+                exit = true;  // Exit the loop
+                console.log("Exiting the To-Do List Manager.");
+                break;
+            default:
+                console.log("Invalid choice, please try again.");
+                break;
+        }
+    }
+}
+
+// Start managing tasks
+manageTodos();
