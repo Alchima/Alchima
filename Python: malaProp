@@ -1,0 +1,24 @@
+# Print the title
+print("Prophete Williams")
+
+# Initialize the input prompts and variables
+print('Input the first number: ')
+firstNumber = float(input())
+print('Input the second number: ')
+secondNumber = float(input())
+print('Input the third number: ')
+thirdNumber = float(input())
+print('Input the fourth number: ')
+fourthNumber = float(input())
+
+# Use the max function to find the greatest number
+maxNumber = max(firstNumber, secondNumber, thirdNumber, fourthNumber)
+
+# Output the results
+print("The input numbers are:")
+print("First number:", firstNumber)
+print("Second number:", secondNumber)
+print("Third number:", thirdNumber)
+print("Fourth number:", fourthNumber)
+
+print(f"The greatest number is: {maxNumber}")
