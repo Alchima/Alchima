@@ -1,0 +1,94 @@
+
+# Prompts user for the type of operation they want to perform
+print("|*************************|")
+print("|****Enter your choice****|")
+print("|*************************|")
+print("| 1|     Add (+)          |")
+print("| 2|     Subtract (-)     |")
+print("| 3|     Multiply (*)     |")
+print("| 4|     Divide (/)       |")
+print("|*************************|")
+print("Please enter your choice (1/2/3/4):")
+cho = float(input())  # User input for the operation type
+print("How many numbers you will input? ")
+inp = float(input())  # User input for the number of values they want to operate on
+
+# Initialization of sum variable, used to store the result of calculations
+sum = 0
+
+# Function to perform calculations based on user choice
+def calc(inp, cho, sum):
+    if cho == 1:  # Addition
+        while inp > 0:
+            print("Enter a number: ")
+            i = float(input())  # User input for the number
+            sum = sum + i  # Add the input number to the sum
+            inp -= 1  # Decrease the number of remaining inputs
+        return sum
+    elif cho == 2:  # Subtraction
+        print("Enter a number: ")
+        i = float(input())  # User input for the first number
+        sum = i  # Initialize sum with the first number
+        inp -= 1  # Decrease the number of remaining inputs
+        while inp > 0:
+            print("Enter a number: ")
+            i = float(input())  # User input for the next number
+            sum -= i  # Subtract the input number from the sum
+            inp -= 1  # Decrease the number of remaining inputs
+        return sum
+    elif cho == 3:  # Multiplication
+        print("Enter a number: ")
+        i = float(input())  # User input for the first number
+        sum = i  # Initialize sum with the first number
+        inp -= 1  # Decrease the number of remaining inputs
+        while inp > 0:
+            print("Enter a number: ")
+            i = float(input())  # User input for the next number
+            sum *= i  # Multiply the input number with the sum
+            inp -= 1  # Decrease the number of remaining inputs
+        return sum
+    elif cho == 4:  # Division
+        print("Enter a number: ")
+        i = float(input())  # User input for the first number
+        sum = i  # Initialize sum with the first number
+        inp -= 1  # Decrease the number of remaining inputs
+        while inp > 0:
+            print("Enter a number: ")
+            i = float(input())  # User input for the next number
+            if i == 0:  # Prevent division by zero
+                print("Cannot divide by zero. Skipping this division step.")
+                inp -= 1
+                continue
+            sum /= i  # Divide the sum by the input number
+            inp -= 1  # Decrease the number of remaining inputs
+        return sum
+
+# Function to prompt the user if they want to continue with another calculation
+def Con(ans):
+    if ans.lower() == "yes":  # Handle case insensitivity for "yes"
+        return 0  # Continue the loop
+    else:
+        return 1  # End the loop
+
+# Calls the calculation function and displays the result
+print(calc(inp, cho, sum))
+print("Would you like to calculate another? (yes/no):")
+ans = input()  # User input to decide whether to continue or not
+Con(ans)
+
+meta = ans  # Store the response to control the loop
+
+# Loop to allow the user to continue performing calculations
+while meta.lower() == "yes":  # Case insensitive comparison for "yes"
+    print("Please enter your choice (1/2/3/4):")
+    cho = float(input())  # User input for the operation type
+    print("How many numbers you will input? ")
+    inp = float(input())  # User input for the number of values to operate on
+
+    sum = 0  # Reset sum to 0 for the new calculation
+    print(calc(inp, cho, sum))  # Call the calculation function again
+    print("Would you like to calculate another? (yes/no):")
+    ans = input()  # Ask if the user wants to continue
+    meta = Con(ans)  # Set the loop condition
+else:
+    print("Thank you for using the calculator.")  # End message
