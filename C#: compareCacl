@@ -1,0 +1,75 @@
+using System;
+
+namespace Chapter02
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Unsigned integer (uint): Stores positive whole numbers and 0
+            uint naturalNumber = 23;
+
+            // Signed integer (int): Stores positive or negative whole numbers, including 0
+            int intgerNumber = -23;
+
+            // Float: Single-precision floating-point type
+            // The 'F' suffix ensures this literal is treated as a float
+            float realNumber = 2.3F;
+
+            // Double: Double-precision floating-point type
+            // No suffix is needed for a double literal
+            double anotherRealNumber = 2.3;
+
+            // Demonstrating integer storage using decimal, binary, and hexadecimal notations
+            int decimalNotation = 2_000_000; // Decimal notation with underscores for readability
+            int binaryNotation = 0b_0001_1110_1000_0100_1000_0000; // Binary literal with prefix '0b'
+            int hexadecimalNotation = 0x_001E_8480; // Hexadecimal literal with prefix '0x'
+
+            // Comparing the values stored in different notations (all are equivalent)
+            Console.WriteLine($"{decimalNotation == binaryNotation}"); // Output: True
+            Console.WriteLine($"{decimalNotation == hexadecimalNotation}"); // Output: True
+
+            // Displaying the size (in bytes) and range of int, double, and decimal types
+            Console.WriteLine($"int uses {sizeof(int)} bytes and can store numbers in the range {int.MinValue:N0} to {int.MaxValue:N0}.");
+            Console.WriteLine($"double uses {sizeof(double)} bytes and can store numbers in the range {double.MinValue:N0} to {double.MaxValue:N0}.");
+            Console.WriteLine($"decimal uses {sizeof(decimal)} bytes and can store numbers in the range {decimal.MinValue:N0} to {decimal.MaxValue:N0}.");
+
+            // Demonstrating precision differences between double and decimal
+            Console.WriteLine("Using Doubles:");
+            double a = 0.1;
+            double b = 0.2;
+
+            // Comparing two double values for equality (may not match due to floating-point precision issues)
+            if (a + b == 0.3)
+            {
+                Console.WriteLine($"{a} + {b} equals 0.3"); // Unlikely to output this
+            }
+            else
+            {
+                Console.WriteLine($"{a} + {b} does NOT equal 0.3"); // Demonstrates double precision limitations
+            }
+
+            // Demonstrating the use of decimals for precise arithmetic
+            Console.WriteLine("Using Decimals:");
+            decimal c = 0.1M; // 'M' suffix ensures this literal is treated as a decimal
+            decimal d = 0.2M;
+
+            // Comparing two decimal values for equality (more accurate for financial or precise calculations)
+            if (c + d == 0.3M)
+            {
+                Console.WriteLine($"{c} + {d} equals 0.3"); // Outputs this
+            }
+            else
+            {
+                Console.WriteLine($"{c} + {d} does NOT equal 0.3");
+            }
+
+            // Example of a basic output
+            Console.WriteLine("Hello World!");
+
+            // Declaring boolean variables (not used in this program)
+            bool happy = true;
+            bool sad = false;
+        }
+    }
+}
