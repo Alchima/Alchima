@@ -1,0 +1,71 @@
+using System;
+
+namespace Chapter04
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Declare variables for class amount and student name
+            int classAmount;
+            string studnetname; 
+
+            // Display the title of the registration system
+            Console.WriteLine("SHR Registration for Spring 2022");
+
+            // Initialize an array to store the class schedule (maximum of 8 classes)
+            string[] schedule = new string[8];
+
+            // Prompt the user to enter the student's name
+            Console.Write("Enter Student Name: ");
+            studnetname = Console.ReadLine();
+
+            // Prompt the user to enter the number of classes they want to register for
+            Console.Write("Enter Amount of Classes (Limit 8): ");
+            classAmount = Convert.ToInt32(Console.ReadLine());
+
+            // Validation loop to ensure the number of classes does not exceed the limit
+            while (classAmount > 8)
+            {
+                Console.Write("Enter Smaller Amount of Classes (Limit 8): ");
+                classAmount = Convert.ToInt32(Console.ReadLine());
+            }
+
+            // Display the entered student name
+            Console.WriteLine("Student Name: " + studnetname);
+
+            // Loop to collect class information from the user
+            for (int i = 0; i < classAmount; i++)
+            {
+                // Label for restarting the loop if needed
+                start_of_loop:
+                Console.WriteLine("Enter Class (MATH, LANG, SCI, SOC, ART) and Class Number (100, 200, 300, 400): ");
+                
+                // Store the class in the schedule array
+                schedule[i++] = Console.ReadLine();
+
+                // Ask the user if they are done adding classes
+                Console.WriteLine("Are you done? (yes/no): ");
+                string yesorno = Console.ReadLine();
+
+                // If the user confirms they are done, exit the loop
+                if (yesorno.ToLower() == "yes")
+                {
+                    break;
+                }
+                // If the user is not done, restart the loop for another class input
+                if (yesorno.ToLower() == "no")
+                {
+                    goto start_of_loop;
+                }
+            }
+
+            // Display all registered classes
+            Console.WriteLine("Classes: ");
+            for (int i = 0; i < classAmount; i++)
+            {
+                Console.WriteLine(schedule[i]);
+            }
+        }
+    }
+}
